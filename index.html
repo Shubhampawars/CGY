@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Career Orientation App</title>
+  <title>Career Path Finder</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f1f3f8;
+      background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
     .container {
-      max-width: 600px;
-      margin: auto;
+      max-width: 800px;
+      margin: 30px auto;
       background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     h1, h2, h3 {
       text-align: center;
@@ -32,87 +37,180 @@
       cursor: pointer;
       width: 100%;
       margin-top: 20px;
+      font-size: 16px;
     }
-    button:hover {
-      background: #0056b3;
-    }
-    .question {
-      margin-bottom: 15px;
-    }
-    .hidden {
-      display: none;
-    }
+    .question { margin-bottom: 20px; }
+    .option { margin: 5px 0; }
+    .hidden { display: none; }
     .career-box {
       background: #eef3ff;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 15px;
+      margin-top: 20px;
       border-left: 5px solid #007bff;
     }
-    .option {
-      margin: 5px 0;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
     }
   </style>
 </head>
 <body>
 
 <div class="container" id="welcome-screen">
-  <h1>Welcome to the Future 🚀</h1>
-  <p style="text-align:center;">Take this GK test to find your ideal career path!</p>
-  <button onclick="startQuiz()">Start GK Test</button>
+  <h1>✨ Welcome to the Future ✨</h1>
+  <p style="text-align:center; font-size: 18px;">Discover your ideal career path based on your thinking and preferences.</p>
+  <button onclick="startQuiz()">Start Personality Quiz</button>
 </div>
 
 <div class="container hidden" id="quiz-screen">
-  <h2>General Knowledge Test</h2>
+  <h2>Career Orientation Quiz</h2>
   <form id="quiz-form">
+    <!-- 10 questions -->
+    <!-- Add your questions here -->
     <div class="question">
-      <label>1. Who is the current President of India?</label><br>
-      <div class="option"><input type="radio" name="q1" value="a" required> Narendra Modi</div>
-      <div class="option"><input type="radio" name="q1" value="b"> Ram Nath Kovind</div>
-      <div class="option"><input type="radio" name="q1" value="c"> Droupadi Murmu</div>
-      <div class="option"><input type="radio" name="q1" value="d"> Pratibha Patil</div>
+      <label>1. When you work on a project, which part do you enjoy the most?</label>
+      <div class="option"><input type="radio" name="q1" value="a" required> Coming up with new ideas</div>
+      <div class="option"><input type="radio" name="q1" value="b"> Organizing everything step by step</div>
+      <div class="option"><input type="radio" name="q1" value="c"> Working with others as a team</div>
+      <div class="option"><input type="radio" name="q1" value="d"> Focusing on technical details</div>
     </div>
+
     <div class="question">
-      <label>2. What is the capital of Australia?</label><br>
-      <div class="option"><input type="radio" name="q2" value="a" required> Sydney</div>
-      <div class="option"><input type="radio" name="q2" value="b"> Melbourne</div>
-      <div class="option"><input type="radio" name="q2" value="c"> Canberra</div>
-      <div class="option"><input type="radio" name="q2" value="d"> Brisbane</div>
+      <label>2. What motivates you to work hard?</label>
+      <div class="option"><input type="radio" name="q2" value="a" required> Getting appreciation and praise</div>
+      <div class="option"><input type="radio" name="q2" value="b"> Solving difficult problems</div>
+      <div class="option"><input type="radio" name="q2" value="c"> Helping people around you</div>
+      <div class="option"><input type="radio" name="q2" value="d"> Learning something new</div>
     </div>
+
     <div class="question">
-      <label>3. What is H2O?</label><br>
-      <div class="option"><input type="radio" name="q3" value="a" required> Hydrogen Peroxide</div>
-      <div class="option"><input type="radio" name="q3" value="b"> Water</div>
-      <div class="option"><input type="radio" name="q3" value="c"> Oxygen</div>
-      <div class="option"><input type="radio" name="q3" value="d"> Acid</div>
+      <label>3. How do you prefer to spend your free time?</label>
+      <div class="option"><input type="radio" name="q3" value="a" required> Reading books or researching topics</div>
+      <div class="option"><input type="radio" name="q3" value="b"> Doing something creative (art, music, etc.)</div>
+      <div class="option"><input type="radio" name="q3" value="c"> Playing sports or being active</div>
+      <div class="option"><input type="radio" name="q3" value="d"> Talking to friends and family</div>
     </div>
+
     <div class="question">
-      <label>4. Largest planet in solar system?</label><br>
-      <div class="option"><input type="radio" name="q4" value="a" required> Earth</div>
-      <div class="option"><input type="radio" name="q4" value="b"> Jupiter</div>
-      <div class="option"><input type="radio" name="q4" value="c"> Saturn</div>
-      <div class="option"><input type="radio" name="q4" value="d"> Mars</div>
+      <label>4. Which of these statements best describes you?</label>
+      <div class="option"><input type="radio" name="q4" value="a" required> I like to plan before I act</div>
+      <div class="option"><input type="radio" name="q4" value="b"> I love experimenting with ideas</div>
+      <div class="option"><input type="radio" name="q4" value="c"> I feel happy when I help others</div>
+      <div class="option"><input type="radio" name="q4" value="d"> I enjoy working with my hands</div>
     </div>
+
     <div class="question">
-      <label>5. What is 12 x 8?</label><br>
-      <div class="option"><input type="radio" name="q5" value="a" required> 96</div>
-      <div class="option"><input type="radio" name="q5" value="b"> 88</div>
-      <div class="option"><input type="radio" name="q5" value="c"> 100</div>
-      <div class="option"><input type="radio" name="q5" value="d"> 84</div>
+      <label>5. What kind of work environment do you prefer?</label>
+      <div class="option"><input type="radio" name="q5" value="a" required> A quiet place where I can focus</div>
+      <div class="option"><input type="radio" name="q5" value="b"> A place full of people and activity</div>
+      <div class="option"><input type="radio" name="q5" value="c"> A creative and flexible atmosphere</div>
+      <div class="option"><input type="radio" name="q5" value="d"> A structured and organized setting</div>
     </div>
+
+    <div class="question">
+      <label>6. When you face a problem, what do you usually do first?</label>
+      <div class="option"><input type="radio" name="q6" value="a" required> Think carefully and analyze it</div>
+      <div class="option"><input type="radio" name="q6" value="b"> Discuss it with someone for advice</div>
+      <div class="option"><input type="radio" name="q6" value="c"> Try different solutions to see what works</div>
+      <div class="option"><input type="radio" name="q6" value="d"> Look for examples or instructions</div>
+    </div>
+
+    <div class="question">
+      <label>7. What type of achievement makes you feel proud?</label>
+      <div class="option"><input type="radio" name="q7" value="a" required> Winning a competition</div>
+      <div class="option"><input type="radio" name="q7" value="b"> Creating something new</div>
+      <div class="option"><input type="radio" name="q7" value="c"> Helping others succeed</div>
+      <div class="option"><input type="radio" name="q7" value="d"> Completing a difficult task accurately</div>
+    </div>
+
+    <div class="question">
+      <label>8. What do you believe is your greatest strength?</label>
+      <div class="option"><input type="radio" name="q8" value="a" required> Creativity</div>
+      <div class="option"><input type="radio" name="q8" value="b"> Leadership</div>
+      <div class="option"><input type="radio" name="q8" value="c"> Discipline</div>
+      <div class="option"><input type="radio" name="q8" value="d"> Empathy</div>
+    </div>
+
+    <div class="question">
+      <label>9. Which of these subjects do you feel most connected to?</label>
+      <div class="option"><input type="radio" name="q9" value="a" required> Science and experiments</div>
+      <div class="option"><input type="radio" name="q9" value="b"> Mathematics and logic</div>
+      <div class="option"><input type="radio" name="q9" value="c"> Arts and literature</div>
+      <div class="option"><input type="radio" name="q9" value="d"> Social studies and society</div>
+    </div>
+
+    <div class="question">
+      <label>10. In the future, you would like a career that…</label>
+      <div class="option"><input type="radio" name="q10" value="a" required> Involves innovation and ideas</div>
+      <div class="option"><input type="radio" name="q10" value="b"> Brings respect and stability</div>
+      <div class="option"><input type="radio" name="q10" value="c"> Helps people and communities</div>
+      <div class="option"><input type="radio" name="q10" value="d"> Allows you to work independently</div>
+    </div>
+
     <button type="submit">Submit Answers</button>
   </form>
 </div>
 
 <div class="container hidden" id="loading-screen">
-  <h2>Evaluating...</h2>
-  <p>Please wait while we analyze your results and suggest the best career path for you.</p>
+  <h2>Analyzing Your Profile...</h2>
+  <p>Please wait while we match your preferences with the right career path...</p>
 </div>
 
 <div class="container hidden" id="result-screen">
-  <h2>Result</h2>
-  <p><strong>Your Score:</strong> <span id="score"></span> / 5</p>
+  <h2>Your Career Recommendation</h2>
+  <p><strong>Score:</strong> <span id="score"></span> / 10</p>
   <div class="career-box" id="career-info"></div>
-  <button onclick="location.reload()">Start Again</button>
+
+  <h3 style="margin-top: 40px;">📚 Explore Other Career Streams</h3>
+  <table>
+    <tr>
+      <th>Stream</th>
+      <th>After 10th</th>
+      <th>After 12th (Courses)</th>
+      <th>Entrance Exams</th>
+      <th>Career Options</th>
+    </tr>
+    <tr>
+      <td>Engineering</td>
+      <td>Science (PCM)</td>
+      <td>B.Tech, BE</td>
+      <td>JEE, CET, VITEEE</td>
+      <td>Software Engineer, Civil Engineer, etc.</td>
+    </tr>
+    <tr>
+      <td>Science</td>
+      <td>Science (PCB/PCM)</td>
+      <td>BSc, BPharma, BSc Agri</td>
+      <td>NEET, CUET, ICAR</td>
+      <td>Doctor, Biotech, Chemist, etc.</td>
+    </tr>
+    <tr>
+      <td>Arts</td>
+      <td>Any Stream</td>
+      <td>BA, BMM, BFA</td>
+      <td>CUET, NID/NIFT</td>
+      <td>Teacher, Journalist, Designer, etc.</td>
+    </tr>
+    <tr>
+      <td>Commerce</td>
+      <td>Any Stream</td>
+      <td>B.Com, BBA, CA Foundation</td>
+      <td>CUET, IPU, CPT</td>
+      <td>CA, Banker, Entrepreneur, etc.</td>
+    </tr>
+  </table>
+
+  <button onclick="location.reload()">Try Again</button>
 </div>
 
 <script>
@@ -123,21 +221,7 @@
 
   document.getElementById('quiz-form').addEventListener('submit', function(e) {
     e.preventDefault();
-
-    const correctAnswers = {
-      q1: 'c',
-      q2: 'c',
-      q3: 'b',
-      q4: 'b',
-      q5: 'a'
-    };
-
-    let score = 0;
-    for (let q in correctAnswers) {
-      if (this[q].value === correctAnswers[q]) {
-        score++;
-      }
-    }
+    let score = 10;
 
     document.getElementById('quiz-screen').classList.add('hidden');
     document.getElementById('loading-screen').classList.remove('hidden');
@@ -147,43 +231,16 @@
       document.getElementById('result-screen').classList.remove('hidden');
       document.getElementById('score').innerText = score;
 
-      let careerHTML = "";
-      if (score === 5 || score === 4) {
-        careerHTML = `
-          <h3>Career Path: Software Engineer 👨‍💻</h3>
-          <p><strong>After 10th:</strong> Choose Science stream (PCM).</p>
-          <p><strong>After 12th:</strong> Prepare for JEE / CET exams.</p>
-          <p><strong>Engineering Branch:</strong> Computer Engineering / IT.</p>
-          <p><strong>Entrance Marks Needed:</strong> 90+ percentile in JEE or 95+ marks in MHT-CET.</p>
-        `;
-      } else if (score === 3) {
-        careerHTML = `
-          <h3>Career Path: Civil Engineer 🏗️</h3>
-          <p><strong>After 10th:</strong> Choose Science stream (PCM).</p>
-          <p><strong>After 12th:</strong> Prepare for CET / JEE.</p>
-          <p><strong>Engineering Branch:</strong> Civil Engineering.</p>
-          <p><strong>Entrance Marks Needed:</strong> 80+ marks in CET.</p>
-        `;
-      } else if (score === 2) {
-        careerHTML = `
-          <h3>Career Path: Graphic Designer 🎨</h3>
-          <p><strong>After 10th:</strong> Choose Arts or Commerce.</p>
-          <p><strong>After 12th:</strong> Take design entrance exams like NID or pursue B.Des.</p>
-          <p><strong>Specialization:</strong> UI/UX, Visual Design, Animation.</p>
-        `;
-      } else {
-        careerHTML = `
-          <h3>Career Path: Explorer 🔍</h3>
-          <p>You’re still discovering your strengths. Focus on improving GK and communication.</p>
-          <p>Try different fields, internships, and talk to mentors to find your true passion!</p>
-        `;
-      }
-
-      document.getElementById('career-info').innerHTML = careerHTML;
-
-    }, 15000); // 15 sec delay
+      let info = `
+        <h3>Reflective Thinker - Software or Design Careers 🧠💡</h3>
+        <p><strong>After 10th:</strong> Science (for tech) or Arts (for design).</p>
+        <p><strong>After 12th:</strong> B.Tech (CS/IT) or B.Des/BMM for creative paths.</p>
+        <p><strong>Competitive Exams:</strong> JEE/CET for engineering or NID/NIFT for design.</p>
+      `;
+      document.getElementById('career-info').innerHTML = info;
+    }, 15000);
   });
 </script>
 
 </body>
-</html>
+  </html>
