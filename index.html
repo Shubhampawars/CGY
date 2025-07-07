@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Orientation App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f3f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #2e3a59;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .hidden {
+      display: none;
+    }
+    .career-box {
+      background: #eef3ff;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 5px solid #007bff;
+    }
+    .option {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="welcome-screen">
+  <h1>Welcome to the Future 🚀</h1>
+  <p style="text-align:center;">Take this GK test to find your ideal career path!</p>
+  <button onclick="startQuiz()">Start GK Test</button>
+</div>
+
+<div class="container hidden" id="quiz-screen">
+  <h2>General Knowledge Test</h2>
+  <form id="quiz-form">
+    <div class="question">
+      <label>1. Who is the current President of India?</label><br>
+      <div class="option"><input type="radio" name="q1" value="a" required> Narendra Modi</div>
+      <div class="option"><input type="radio" name="q1" value="b"> Ram Nath Kovind</div>
+      <div class="option"><input type="radio" name="q1" value="c"> Droupadi Murmu</div>
+      <div class="option"><input type="radio" name="q1" value="d"> Pratibha Patil</div>
+    </div>
+    <div class="question">
+      <label>2. What is the capital of Australia?</label><br>
+      <div class="option"><input type="radio" name="q2" value="a" required> Sydney</div>
+      <div class="option"><input type="radio" name="q2" value="b"> Melbourne</div>
+      <div class="option"><input type="radio" name="q2" value="c"> Canberra</div>
+      <div class="option"><input type="radio" name="q2" value="d"> Brisbane</div>
+    </div>
+    <div class="question">
+      <label>3. What is H2O?</label><br>
+      <div class="option"><input type="radio" name="q3" value="a" required> Hydrogen Peroxide</div>
+      <div class="option"><input type="radio" name="q3" value="b"> Water</div>
+      <div class="option"><input type="radio" name="q3" value="c"> Oxygen</div>
+      <div class="option"><input type="radio" name="q3" value="d"> Acid</div>
+    </div>
+    <div class="question">
+      <label>4. Largest planet in solar system?</label><br>
+      <div class="option"><input type="radio" name="q4" value="a" required> Earth</div>
+      <div class="option"><input type="radio" name="q4" value="b"> Jupiter</div>
+      <div class="option"><input type="radio" name="q4" value="c"> Saturn</div>
+      <div class="option"><input type="radio" name="q4" value="d"> Mars</div>
+    </div>
+    <div class="question">
+      <label>5. What is 12 x 8?</label><br>
+      <div class="option"><input type="radio" name="q5" value="a" required> 96</div>
+      <div class="option"><input type="radio" name="q5" value="b"> 88</div>
+      <div class="option"><input type="radio" name="q5" value="c"> 100</div>
+      <div class="option"><input type="radio" name="q5" value="d"> 84</div>
+    </div>
+    <button type="submit">Submit Answers</button>
+  </form>
+</div>
+
+<div class="container hidden" id="loading-screen">
+  <h2>Evaluating...</h2>
+  <p>Please wait while we analyze your results and suggest the best career path for you.</p>
+</div>
+
+<div class="container hidden" id="result-screen">
+  <h2>Result</h2>
+  <p><strong>Your Score:</strong> <span id="score"></span> / 5</p>
+  <div class="career-box" id="career-info"></div>
+  <button onclick="location.reload()">Start Again</button>
+</div>
+
+<script>
+  function startQuiz() {
+    document.getElementById('welcome-screen').classList.add('hidden');
+    document.getElementById('quiz-screen').classList.remove('hidden');
+  }
+
+  document.getElementById('quiz-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const correctAnswers = {
+      q1: 'c',
+      q2: 'c',
+      q3: 'b',
+      q4: 'b',
+      q5: 'a'
+    };
+
+    let score = 0;
+    for (let q in correctAnswers) {
+      if (this[q].value === correctAnswers[q]) {
+        score++;
+      }
+    }
+
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('loading-screen').classList.remove('hidden');
+
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+      document.getElementById('score').innerText = score;
+
+      let careerHTML = "";
+      if (score === 5 || score === 4) {
+        careerHTML = `
+          <h3>Career Path: Software Engineer 👨‍💻</h3>
+          <p><strong>After 10th:</strong> Choose Science stream (PCM).</p>
+          <p><strong>After 12th:</strong> Prepare for JEE / CET exams.</p>
+          <p><strong>Engineering Branch:</strong> Computer Engineering / IT.</p>
+          <p><strong>Entrance Marks Needed:</strong> 90+ percentile in JEE or 95+ marks in MHT-CET.</p>
+        `;
+      } else if (score === 3) {
+        careerHTML = `
+          <h3>Career Path: Civil Engineer 🏗️</h3>
+          <p><strong>After 10th:</strong> Choose Science stream (PCM).</p>
+          <p><strong>After 12th:</strong> Prepare for CET / JEE.</p>
+          <p><strong>Engineering Branch:</strong> Civil Engineering.</p>
+          <p><strong>Entrance Marks Needed:</strong> 80+ marks in CET.</p>
+        `;
+      } else if (score === 2) {
+        careerHTML = `
+          <h3>Career Path: Graphic Designer 🎨</h3>
+          <p><strong>After 10th:</strong> Choose Arts or Commerce.</p>
+          <p><strong>After 12th:</strong> Take design entrance exams like NID or pursue B.Des.</p>
+          <p><strong>Specialization:</strong> UI/UX, Visual Design, Animation.</p>
+        `;
+      } else {
+        careerHTML = `
+          <h3>Career Path: Explorer 🔍</h3>
+          <p>You’re still discovering your strengths. Focus on improving GK and communication.</p>
+          <p>Try different fields, internships, and talk to mentors to find your true passion!</p>
+        `;
+      }
+
+      document.getElementById('career-info').innerHTML = careerHTML;
+
+    }, 15000); // 15 sec delay
+  });
+</script>
+
+</body>
+</html>
